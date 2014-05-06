@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Winterplace Pickup Ultimate Game
+  br
+  p.lead
+    | Who's playing?
+    br
+  section
+    ul.list-group
+      for user in users
+        li.list-group-item= user.email

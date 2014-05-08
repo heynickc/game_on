@@ -54,7 +54,7 @@ describe('POST /signup', function () {
 			.post('/signup')
 			.send({
 				email: 'nickc@nickc.com',
-				password: 'secretsauce'
+				password: 'secretsauce',
 			})
 			.end(function (err, res) {
 				if (err) return done(err);

@@ -27,6 +27,7 @@ describe('POST /login', function () {
 			.send({
 				email: 'nickc@nickc.com',
 				password: 'secretsauce',
+				confirmPassword: 'secretsauce'
 			})
 			.end(function (err, res) {
 				if (err) return done(err);

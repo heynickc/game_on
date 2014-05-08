@@ -13,7 +13,9 @@ var errorHandler = require('errorhandler');
 var csrf = require('lusca').csrf();
 var methodOverride = require('method-override');
 
-var MongoStore = require('connect-mongo')({ session: session });
+var MongoStore = require('connect-mongo')({
+	session: session
+});
 var flash = require('express-flash');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -48,8 +50,8 @@ var app = express();
  */
 
 mongoose.connect(secrets.db);
-mongoose.connection.on('error', function() {
-  console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
+mongoose.connection.on('error', function () {
+	console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
 });
 
 /**
@@ -61,15 +63,16 @@ var day = hour * 24;
 var week = day * 7;
 
 var csrfWhitelist = [
-  '/this-url-will-bypass-csrf'
+	'/signup',
+	'/login'
 ];
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(connectAssets({
-  paths: ['public/css', 'public/js'],
-  helperContext: app.locals
+	paths: ['public/css', 'public/js'],
+	helperContext: app.locals
 }));
 app.use(compress());
 app.use(logger('dev'));
@@ -79,33 +82,35 @@ app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
 app.use(session({
-  secret: secrets.sessionSecret,
-  store: new MongoStore({
-    url: secrets.db,
-    auto_reconnect: true
-  })
+	secret: secrets.sessionSecret,
+	store: new MongoStore({
+		url: secrets.db,
+		auto_reconnect: true
+	})
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(function(req, res, next) {
-  // Conditional CSRF.
-  if (_.contains(csrfWhitelist, req.path)) return next();
-  csrf(req, res, next);
+app.use(function (req, res, next) {
+	// Conditional CSRF.
+	if (_.contains(csrfWhitelist, req.path)) return next();
+	csrf(req, res, next);
 });
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
-  next();
+app.use(function (req, res, next) {
+	res.locals.user = req.user;
+	next();
 });
 app.use(flash());
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: week }));
-app.use(function(req, res, next) {
-  // Keep track of previous URL to redirect back to
-  // original destination after a successful login.
-  if (req.method !== 'GET') return next();
-  var path = req.path.split('/')[1];
-  if (/(auth|login|logout|signup)$/i.test(path)) return next();
-  req.session.returnTo = req.path;
-  next();
+app.use(express.static(path.join(__dirname, 'public'), {
+	maxAge: week
+}));
+app.use(function (req, res, next) {
+	// Keep track of previous URL to redirect back to
+	// original destination after a successful login.
+	if (req.method !== 'GET') return next();
+	var path = req.path.split('/')[1];
+	if (/(auth|login|logout|signup)$/i.test(path)) return next();
+	req.session.returnTo = req.path;
+	next();
 });
 
 /**
@@ -161,16 +166,24 @@ app.get('/api/instagram', passportConf.isAuthenticated, passportConf.isAuthorize
  */
 
 app.get('/auth/foursquare', passport.authorize('foursquare'));
-app.get('/auth/foursquare/callback', passport.authorize('foursquare', { failureRedirect: '/api' }), function(req, res) {
-  res.redirect('/api/foursquare');
+app.get('/auth/foursquare/callback', passport.authorize('foursquare', {
+	failureRedirect: '/api'
+}), function (req, res) {
+	res.redirect('/api/foursquare');
 });
 app.get('/auth/tumblr', passport.authorize('tumblr'));
-app.get('/auth/tumblr/callback', passport.authorize('tumblr', { failureRedirect: '/api' }), function(req, res) {
-  res.redirect('/api/tumblr');
+app.get('/auth/tumblr/callback', passport.authorize('tumblr', {
+	failureRedirect: '/api'
+}), function (req, res) {
+	res.redirect('/api/tumblr');
 });
-app.get('/auth/venmo', passport.authorize('venmo', { scope: 'make_payments access_profile access_balance access_email access_phone' }));
-app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '/api' }), function(req, res) {
-  res.redirect('/api/venmo');
+app.get('/auth/venmo', passport.authorize('venmo', {
+	scope: 'make_payments access_profile access_balance access_email access_phone'
+}));
+app.get('/auth/venmo/callback', passport.authorize('venmo', {
+	failureRedirect: '/api'
+}), function (req, res) {
+	res.redirect('/api/venmo');
 });
 
 /**
@@ -184,8 +197,8 @@ app.use(errorHandler());
  * Start Express server.
  */
 
-app.listen(app.get('port'), function() {
-  console.log("✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
+app.listen(app.get('port'), function () {
+	console.log("✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
 });
 
 module.exports = app;

@@ -2,6 +2,7 @@ var request = require('supertest');
 var util = require('util');
 var chai = require('chai');
 var should = chai.should();
+var cheerio = require('cheerio');
 
 var app = require('../app.js');
 var User = require('../models/User');
@@ -10,7 +11,12 @@ describe('GET /signup', function () {
 	it('should return 200 OK', function (done) {
 		request(app)
 			.get('/signup')
-			.expect(200, done);
+		// .expect(200, done)
+		.end(function (err, res) {
+			var $ = cheerio.load(res.text);
+			console.log($);
+			return done();
+		});
 	});
 });
 

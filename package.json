@@ -63,6 +63,7 @@
     "mstring": "^0.1.2",
     "inquirer": "^0.4.1",
     "colors": "^0.6.2",
-    "dotenv": "^0.2.8"
+    "dotenv": "^0.2.8",
+    "cheerio": "^0.15.0"
   }
 }

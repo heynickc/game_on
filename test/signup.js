@@ -11,12 +11,24 @@ describe('GET /signup', function () {
 	it('should return 200 OK', function (done) {
 		request(app)
 			.get('/signup')
-		// .expect(200, done)
-		.end(function (err, res) {
-			var $ = cheerio.load(res.text);
-			console.log($);
-			return done();
-		});
+			.end(function (err, res) {
+				request(app)
+					.post('/signup')
+					.send({
+						email: 'nickc@nickc.com',
+						password: 'secretsauce',
+						confirmPassword: 'secretsauce'
+					})
+					.end(function (err, res) {
+						User.findOne({
+							email: 'nickc@nickc.com'
+						}, function (err, user) {
+							if (err) return done(err);
+							user.email.should.equal('nickc@nickc.com');
+						});
+						return done();
+					});
+			});
 	});
 });
 
@@ -44,7 +56,6 @@ describe('POST /signup', function () {
 				});
 			});
 	});
-
 	it('duplicate user redirects to signup', function (done) {
 		request(app)
 			.post('/signup')
@@ -73,5 +84,4 @@ describe('POST /signup', function () {
 	afterEach(function () {
 		User.remove({}).exec();
 	});
-
 });

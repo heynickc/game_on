@@ -31,19 +31,18 @@ describe('POST /login', function () {
 			})
 			.end(function (err, res) {
 				if (err) return done(err);
-			});
-
-		request(app)
-			.post('/login')
-			.send({
-				email: 'nickc@nickc.com',
-				password: 'secretsauce',
-			})
-			.end(function (err, res) {
-				if (err) return done(err);
-				res.statusCode.should.equal(302);
-				res.headers.should.have.property('location').equal('/');
-				return done();
+				request(app)
+					.post('/login')
+					.send({
+						email: 'nickc@nickc.com',
+						password: 'secretsauce',
+					})
+					.end(function (err, res) {
+						if (err) return done(err);
+						res.statusCode.should.equal(302);
+						res.headers.should.have.property('location').equal('/');
+						return done();
+					});
 			});
 	});
 

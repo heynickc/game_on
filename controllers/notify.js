@@ -34,7 +34,7 @@ exports.postNotify = function (req, res, next) {
 					var mailOptions = {
 						to: email.email,
 						from: 'Ultimate@heynickc.com',
-						subject: 'Yo yo yo',
+						subject: 'Test',
 						text: 'Hello'
 					};
 					smtpTransport.sendMail(mailOptions, function (err) {

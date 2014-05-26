@@ -27,6 +27,7 @@ var connectAssets = require('connect-assets');
  */
 
 var homeController = require('./controllers/home');
+var notifyController = require('./controllers/notify');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
@@ -64,7 +65,8 @@ var week = day * 7;
 if (process.env.NODE_ENV == 'development') {
 	var csrfWhitelist = [
 		'/signup',
-		'/login'
+		'/login',
+		'/notify'
 	];
 }
 
@@ -119,6 +121,7 @@ app.use(function (req, res, next) {
  */
 
 app.get('/', homeController.index);
+app.post('/notify', notifyController.postNotify);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

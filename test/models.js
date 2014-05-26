@@ -18,6 +18,7 @@ describe('User Model', function () {
 	it('should not create a user with the unique email', function (done) {
 		var user = new User({
 			email: 'test@gmail.com',
+			name: 'test',
 			password: 'password'
 		});
 		user.save(function (err) {

@@ -8,5 +8,5 @@ block content
     br
   section
     ul.list-group
-      for user in users
-        li.list-group-item= user.email
+      for user in profiles
+        li.list-group-item= user.profile.name

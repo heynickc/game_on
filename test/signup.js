@@ -62,6 +62,28 @@ describe('POST /signup', function () {
 			});
 	});
 
+	it('saves user name in profile data in mongoose model', function (done) {
+		request(app)
+			.post('/signup')
+			.send({
+				email: 'nickc@nickc.com',
+				name: 'nick',
+				password: 'secretsauce',
+				confirmPassword: 'secretsauce'
+			})
+			.end(function (err, res) {
+				if (err) return done(err);
+				User.findOne({
+					email: 'nickc@nickc.com'
+				}, function (err, user) {
+					if (err) return done(err);
+					user.email.should.equal('nickc@nickc.com');
+					user.profile.name.should.equal('nick');
+					return done();
+				});
+			});
+	});
+
 	it('duplicate user redirects to signup', function (done) {
 		request(app)
 			.post('/signup')

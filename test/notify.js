@@ -24,6 +24,7 @@ describe('POST /notify', function () {
 
 		user.save(function (err) {
 			if (err) return done(err);
+			// post notification button
 			request(app)
 				.post('/notify')
 				.end(function (err, res) {

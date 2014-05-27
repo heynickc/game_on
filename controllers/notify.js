@@ -41,8 +41,7 @@ exports.postNotify = function (req, res, next) {
 						done(err);
 					});
 				}, function (err) {
-					if (err) throw err;
-					done();
+					done(err);
 				});
 			}
 		],

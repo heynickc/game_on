@@ -15,7 +15,6 @@ exports.postNotify = function (req, res, next) {
 			function (done) {
 				User.find({}, 'email', function (err, emails) {
 					if (err) return done(err);
-					console.log(emails);
 					done(err, emails);
 				});
 			},
@@ -41,6 +40,9 @@ exports.postNotify = function (req, res, next) {
 						done(err);
 					});
 				}, function (err) {
+					req.flash('success', {
+						msg: 'Email has been sent to the players!'
+					});
 					done(err);
 				});
 			}

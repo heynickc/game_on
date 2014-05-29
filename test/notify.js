@@ -16,13 +16,23 @@ describe('POST /notify', function () {
 
 	it('duplicate user redirects to signup', function (done) {
 
-		var user = new User({
+		var user1 = new User({
 			email: 'nick.chamberlain.jr@gmail.com',
 			name: 'test',
 			password: 'password'
 		});
 
-		user.save(function (err) {
+		var user2 = new User({
+			email: 'nc38998@salisbury.edu',
+			name: 'test',
+			password: 'password'
+		});
+
+		user1.save(function (err) {
+			if (err) return done(err);
+		});
+
+		user2.save(function (err) {
 			if (err) return done(err);
 			// post notification button
 			request(app)

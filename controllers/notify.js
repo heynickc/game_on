@@ -20,7 +20,6 @@ exports.postNotify = function (req, res, next) {
 			},
 
 			function (emails, done) {
-				console.log(emails[0].email);
 				var smtpTransport = nodemailer.createTransport('SMTP', {
 					service: 'Mailgun',
 					auth: {

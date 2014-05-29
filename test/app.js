@@ -9,14 +9,6 @@ describe('GET /', function () {
 	});
 });
 
-describe('GET /signup', function () {
-	it('should return 200 OK', function (done) {
-		request(app)
-			.get('/signup')
-			.expect(200, done);
-	});
-});
-
 describe('GET /contact', function () {
 	it('should return 200 OK', function (done) {
 		request(app)

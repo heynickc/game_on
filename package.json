@@ -33,6 +33,7 @@
     "less": "^1.7.0",
     "lusca": "^1.0.0",
     "method-override": "^1.0.0",
+    "moment": "^2.6.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
     "node-foursquare": "^0.2.1",
@@ -57,13 +58,15 @@
     "validator": "^3.11.0"
   },
   "devDependencies": {
-    "mocha": "^1.18.2",
     "chai": "^1.9.1",
-    "supertest": "^0.11.0",
-    "mstring": "^0.1.2",
-    "inquirer": "^0.4.1",
+    "cheerio": "^0.15.0",
     "colors": "^0.6.2",
     "dotenv": "^0.2.8",
-    "cheerio": "^0.15.0"
+    "inquirer": "^0.4.1",
+    "mocha": "^1.18.2",
+    "moment": "^2.6.0",
+    "mstring": "^0.1.2",
+    "sinon": "^1.10.0",
+    "supertest": "^0.11.0"
   }
 }

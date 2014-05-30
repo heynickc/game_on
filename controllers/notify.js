@@ -9,17 +9,17 @@ var User = require('../models/User');
  * Home page.
  */
 
-exports.postNotify = function (req, res, next) {
+exports.postNotify = function(req, res, next) {
 	async.waterfall([
 
-			function (done) {
-				User.find({}, 'email', function (err, emails) {
+			function(done) {
+				User.find({}, 'email', function(err, emails) {
 					if (err) return done(err);
 					done(err, emails);
 				});
 			},
 
-			function (emails, done) {
+			function(emails, done) {
 				var smtpTransport = nodemailer.createTransport('SMTP', {
 					service: 'Mailgun',
 					auth: {
@@ -28,17 +28,17 @@ exports.postNotify = function (req, res, next) {
 					}
 				});
 
-				async.eachSeries(emails, function (email, done) {
+				async.eachSeries(emails, function(email, done) {
 					var mailOptions = {
 						to: email.email,
 						from: 'Ultimate@heynickc.com',
 						subject: 'Test',
 						text: 'Hello'
 					};
-					smtpTransport.sendMail(mailOptions, function (err) {
+					smtpTransport.sendMail(mailOptions, function(err) {
 						done(err);
 					});
-				}, function (err) {
+				}, function(err) {
 					req.flash('success', {
 						msg: 'Email has been sent to the players!'
 					});
@@ -47,7 +47,48 @@ exports.postNotify = function (req, res, next) {
 			}
 		],
 
-		function (err) {
+		function(err) {
+			if (err) return next(err);
+			res.redirect('/');
+		});
+};
+
+exports.postTestNotify = function(req, res, next) {
+	async.waterfall([
+
+			function(done) {
+				User.find({}, 'email', function(err, emails) {
+					if (err) return done(err);
+					done(err, emails);
+				});
+			},
+
+			function(emails, done) {
+				var smtpTransport = nodemailer.createTransport('Stub');
+				var responses = [];
+
+				async.eachSeries(emails, function(email, done) {
+					var mailOptions = {
+						to: email.email,
+						from: 'Ultimate@heynickc.com',
+						subject: 'Test',
+						text: 'Hello'
+					};
+					smtpTransport.sendMail(mailOptions, function(err, response) {
+						done(err);
+						// responses.push(response);
+						console.log(response);
+					});
+				}, function(err) {
+					req.flash('success', {
+						msg: 'Email has been sent to the players!'
+					});
+					done(err);
+				});
+			}
+		],
+
+		function(err) {
 			if (err) return next(err);
 			res.redirect('/');
 		});

@@ -50,7 +50,7 @@ var app = express();
  */
 
 mongoose.connect(secrets.db);
-mongoose.connection.on('error', function () {
+mongoose.connection.on('error', function() {
 	console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
 });
 
@@ -66,7 +66,8 @@ if (process.env.NODE_ENV == 'development') {
 	var csrfWhitelist = [
 		'/signup',
 		'/login',
-		'/notify'
+		'/notify',
+		'/testNotify'
 	];
 }
 
@@ -93,12 +94,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	// Conditional CSRF.
 	if (_.contains(csrfWhitelist, req.path)) return next();
 	csrf(req, res, next);
 });
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	res.locals.user = req.user;
 	next();
 });
@@ -106,7 +107,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public'), {
 	maxAge: week
 }));
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	// Keep track of previous URL to redirect back to
 	// original destination after a successful login.
 	if (req.method !== 'GET') return next();
@@ -122,6 +123,7 @@ app.use(function (req, res, next) {
 
 app.get('/', homeController.index);
 app.post('/notify', notifyController.postNotify);
+app.post('/testNotify', notifyController.postTestNotify);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -150,7 +152,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), function() {
 	console.log("✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
 });
 

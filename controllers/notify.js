@@ -76,20 +76,20 @@ exports.postTestNotify = function(req, res, next) {
 					};
 					smtpTransport.sendMail(mailOptions, function(err, response) {
 						done(err);
-						// responses.push(response);
-						console.log(response);
+						responses.push(response);
 					});
-				}, function(err) {
+				}, function(err, responses) {
 					req.flash('success', {
 						msg: 'Email has been sent to the players!'
 					});
-					done(err);
+					done(err, responses);
 				});
 			}
 		],
 
-		function(err) {
+		function(err, responses) {
 			if (err) return next(err);
+			console.log(responses);
 			res.redirect('/');
 		});
 };

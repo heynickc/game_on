@@ -1,7 +1,10 @@
 language: node_js
-
 services:
-  - mongodb
-
+- mongodb
 node_js:
-  - '0.10'
+- '0.10'
+env:
+  global:
+  - NODE_ENV: development
+  - secure: F4MdsOdpcmyg0+U8x9OtiaBkrlv13KoeGjVUHPNbGcX7ErtOAyeY/srqpmJfrzF7zkNODOIX9z3oSyvVVkStQIwYpazNHWaPcPEHjJXrgRyEpI3pSdTEyIkmk+CAmrWrroyq0oMfd1v6OXTgtdtnxWEXqKMmfW0AOmFoGECINeI=
+  - secure: DtlZVLZQOtDS5s6rO3vhiQcA5wxVnRnEQTgXKxSCTLGBjcesLTWv11Y84cdEY96bduaV2PHjJ4/9DbeVGPJGLu6Q16uHAHBSbpocHTLJq8iRNLkoje3Mk/Uce7NCRsSuLAGqY6AWokeS9C4PtnhzVSGWN4/MAJ1waNXz8QcdWlA=

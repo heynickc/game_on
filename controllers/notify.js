@@ -18,7 +18,6 @@ exports.postNotify = function (req, res, next) {
 					done(err, emails);
 				});
 			},
-
 			function (emails, done) {
 				var smtpTransport = nodemailer.createTransport('SMTP', {
 					service: 'Mailgun',
@@ -27,94 +26,66 @@ exports.postNotify = function (req, res, next) {
 						pass: secrets.mailgun.password
 					}
 				});
-
-				async.eachSeries(emails, function (email, done) {
+				async.map(emails, function (email, done) {
 					var mailOptions = {
 						to: email.email,
 						from: 'Ultimate@heynickc.com',
 						subject: 'Test',
 						text: 'Hello'
 					};
-					smtpTransport.sendMail(mailOptions, function (err) {
-						done(err);
+					smtpTransport.sendMail(mailOptions, function (err, response) {
+						done(err, response);
 					});
-				}, function (err) {
+				}, function (err, responses) {
 					req.flash('success', {
 						msg: 'Email has been sent to the players!'
 					});
-					done(err);
+					done(err, responses);
 				});
 			}
 		],
-
-		function (err) {
+		function (err, responses) {
 			if (err) return next(err);
+			console.log(responses);
 			res.redirect('/');
 		});
 };
 
 exports.postTestNotify = function (req, res, next) {
-	// async.waterfall([
+	async.waterfall([
 
-	// 		function (done) {
-	// 			User.find({}, 'email', function (err, emails) {
-	// 				if (err) return done(err);
-	// 				done(err, emails);
-	// 			});
-	// 		},
-
-	// 		function (emails, done) {
-	// 			var smtpTransport = nodemailer.createTransport('Stub');
-	// 			var responses = [];
-
-	// 			async.eachSeries(emails, function (email, done) {
-	// 				var mailOptions = {
-	// 					to: email.email,
-	// 					from: 'Ultimate@heynickc.com',
-	// 					subject: 'Test',
-	// 					text: 'Hello'
-	// 				};
-	// 				smtpTransport.sendMail(mailOptions, function (err, response) {
-	// 					if (err) return done(err);
-	// 					responses.push(response);
-	// 					done(null, responses);
-	// 				});
-	// 			}, function (err, responses) {
-	// 				req.flash('success', {
-	// 					msg: 'Email has been sent to the players!'
-	// 				});
-	// 				done(err, responses);
-	// 			});
-	// 		}
-	// 	],
-
-	// 	function (err, responses) {
-	// 		if (err) return next(err);
-	// 		console.log(responses);
-	// 		res.redirect('/');
-	// 	});
-
-	User.find({}, 'email', function (err, emails) {
-		if (err) return next(err);
-		var smtpTransport = nodemailer.createTransport('Stub');
-		async.map(emails, function (email, done) {
-			var mailOptions = {
-				to: email.email,
-				from: 'Ultimate@heynickc.com',
-				subject: 'Test',
-				text: 'Hello'
-			};
-			smtpTransport.sendMail(mailOptions, function (err, response) {
-				done(err, response);
-			});
-		}, function (err, responses) {
+			function (done) {
+				User.find({}, 'email', function (err, emails) {
+					if (err) return done(err);
+					// console.log(emails);
+					done(err, emails);
+				});
+			},
+			function (emails, done) {
+				var smtpTransport = nodemailer.createTransport('Stub');
+				async.map(emails, function (email, done) {
+					var mailOptions = {
+						to: email.email,
+						from: 'Ultimate@heynickc.com',
+						subject: 'Test',
+						text: 'Hello'
+					};
+					smtpTransport.sendMail(mailOptions, function (err, response) {
+						done(err, response);
+					});
+				}, function (err, responses) {
+					req.flash('success', {
+						msg: 'Email has been sent to the players!'
+					});
+					done(err, responses);
+				});
+			}
+		],
+		function (err, responses) {
 			if (err) return next(err);
-			req.flash('success', {
-				msg: 'Email has been sent to the players!'
-			});
+			// console.log(responses);
 			res.send({
 				responses: responses
 			});
 		});
-	});
 };

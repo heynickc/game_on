@@ -38,17 +38,15 @@ describe('POST /testNotify', function () {
 			});
 		}, function (err) {
 			if (err) return done(err);
-			return done();
+			request(app)
+				.post('/testNotify')
+				.end(function (err, res) {
+					if (err) return done(err);
+					// console.log(res.body.responses.length);
+					res.body.responses.length.should.equal(2);
+					return done();
+				});
 		});
-
-		request(app)
-			.post('/testNotify')
-			.end(function (err, res) {
-				if (err) return done(err);
-				// console.log(res.body.responses.length);
-				res.body.responses.length.should.equal(2);
-				return done();
-			});
 	});
 
 	afterEach(function (done) {

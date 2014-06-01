@@ -4,14 +4,24 @@ block content
   h1 Winterplace Park Ultimate
   br
   p.lead
-    | Who's playing?
+    h2 Who's playing?
     br
-  section
-    ul.list-group
+  section.col-xs-offset-3
+    ul.list-group.col-xs-10
       for user in profiles
-        li.list-group-item= user.profile.name
+        .list-group-item.col-xs-10
+            .col-xs-4.pull-left
+              h4= user.profile.name
+            .pull-right
+              #status.btn-group
+                button.btn.btn-default(type='button') Playing
+                button.btn.btn-default(type='button') Not Playing
+
+  .row
   form(method='POST' action='/notify')
     .form-group
       button.btn.btn-primary(type='submit')
         i.fa.fa-unlock-alt
         | Notify
+
+

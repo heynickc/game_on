@@ -6,18 +6,20 @@ block content
   p.lead
     h2 Who's playing?
     br
-  .row
-    .col-xs-12.col-sm-offset-3.col-sm-6
-      ul.list-group
-        for user in profiles
-          .list-group-item
-              .col-xs-6.col-sm-6
-                h4.resizeable= user.profile.name
-              .col-xs-4.col-xs-offset-2.col-sm-4.col-sm-offset-2
-                .pull-right
-                  i.fa.fa-thumbs-o-up.fa-3x
-                  i.fa.fa-thumbs-o-down.fa-3x
-              .clearfix
+    .row
+      .col-xs-12
+        ul.list-group
+          for user in profiles
+            .list-group-item
+                .col-xs-6
+                  h4.username= user.profile.name
+                .col-xs-6
+                  .pull-right
+                    button.btn.btn-default.btn-circle.btn-lg(type='button')
+                      i.fa.fa-thumbs-o-up
+                    button.btn.btn-default.btn-circle.btn-lg(type='button')
+                      i.fa.fa-thumbs-o-down
+                .clearfix
    //form(method='POST' action='/notify')
       //.form-group
         //button.btn.btn-primary(type='submit')

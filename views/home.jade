@@ -6,22 +6,22 @@ block content
   p.lead
     h2 Who's playing?
     br
-  section.col-xs-offset-3
-    ul.list-group.col-xs-10
-      for user in profiles
-        .list-group-item.col-xs-10
-            .col-xs-4.pull-left
-              h4= user.profile.name
-            .pull-right
-              #status.btn-group
-                button.btn.btn-default(type='button') Playing
-                button.btn.btn-default(type='button') Not Playing
-
   .row
-  form(method='POST' action='/notify')
-    .form-group
-      button.btn.btn-primary(type='submit')
-        i.fa.fa-unlock-alt
-        | Notify
+    .col-xs-12.col-sm-offset-3.col-sm-6
+      ul.list-group
+        for user in profiles
+          .list-group-item
+              .col-xs-6.col-sm-6
+                h4.resizeable= user.profile.name
+              .col-xs-4.col-xs-offset-2.col-sm-4.col-sm-offset-2
+                .pull-right
+                  i.fa.fa-thumbs-o-up.fa-3x
+                  i.fa.fa-thumbs-o-down.fa-3x
+              .clearfix
+   //form(method='POST' action='/notify')
+      //.form-group
+        //button.btn.btn-primary(type='submit')
+          //i.fa.fa-unlock-alt
+          //| Notify
 
 

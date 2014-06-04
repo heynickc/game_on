@@ -21,14 +21,18 @@ describe('POST /testNotify', function () {
 
 		users[0] = new User({
 			email: 'nick.chamberlain.jr@gmail.com',
-			name: 'test',
-			password: 'password'
+			password: 'password',
+			profile: {
+				name: 'test'
+			}
 		});
 
 		users[1] = new User({
 			email: 'nc38998@salisbury.edu',
-			name: 'test',
-			password: 'password'
+			password: 'password',
+			profile: {
+				name: 'test'
+			}
 		});
 
 		async.each(users, function (user, done) {

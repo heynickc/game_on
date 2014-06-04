@@ -6,7 +6,7 @@ var User = require('../models/User');
  */
 
 exports.getUsers = function (req, res) {
-	User.find({}, function (err, users) {
+	User.find({}, 'email profile.name', function (err, users) {
 		if (err)
 			res.send(err);
 		res.json(users);

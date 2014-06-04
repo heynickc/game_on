@@ -8,6 +8,12 @@ var User = require('../models/User');
 var app = require('../app.js');
 
 describe('GET /api/users', function () {
+
+	beforeEach(function (done) {
+		User.remove({}).exec();
+		return done();
+	});
+
 	it('should return 200 OK', function (done) {
 		request(app)
 			.get('/api/users')
@@ -20,14 +26,18 @@ describe('GET /api/users', function () {
 
 		users[0] = new User({
 			email: 'nick.chamberlain.jr@gmail.com',
-			name: 'test',
-			password: 'password'
+			password: 'password',
+			profile: {
+				name: 'Test Dude 1'
+			}
 		});
 
 		users[1] = new User({
 			email: 'nc38998@salisbury.edu',
-			name: 'test',
-			password: 'password'
+			password: 'password',
+			profile: {
+				name: 'Test Dude 2'
+			}
 		});
 
 		async.each(users, function (user, done) {
@@ -39,9 +49,15 @@ describe('GET /api/users', function () {
 			request(app)
 				.get('/api/users')
 				.end(function (err, res) {
-					console.log(res.text);
+					JSON.parse(res.text)[0].profile.name.should.equal('Test Dude 1');
+					JSON.parse(res.text)[1].profile.name.should.equal('Test Dude 2');
 					return done();
 				});
 		});
+	});
+
+	afterEach(function (done) {
+		User.remove({}).exec();
+		return done();
 	});
 });

@@ -63,13 +63,7 @@ var day = hour * 24;
 var week = day * 7;
 
 if (process.env.NODE_ENV == 'development') {
-	var csrfWhitelist = [
-		'/signup',
-		'/login',
-		'/notify',
-		'/testNotify',
-		'/api/users/'
-	];
+	var csrfWhitelist = [];
 }
 
 app.set('port', process.env.PORT || 3000);
@@ -97,7 +91,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {
 	// Conditional CSRF.
-	if (_.contains(csrfWhitelist, req.path)) return next();
+	if (_.contains(csrfWhitelist, req.path) || (process.env.NODE_ENV == 'development')) return next();
 	csrf(req, res, next);
 });
 app.use(function (req, res, next) {

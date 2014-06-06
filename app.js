@@ -29,7 +29,7 @@ var connectAssets = require('connect-assets');
 var homeController = require('./controllers/home');
 var notifyController = require('./controllers/notify');
 var userController = require('./controllers/user');
-// var apiController = require('./controllers/api');
+var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 
 /**

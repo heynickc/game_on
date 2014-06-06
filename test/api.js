@@ -27,17 +27,13 @@ describe('GET /api/users', function () {
 		users[0] = new User({
 			email: 'nick.chamberlain.jr@gmail.com',
 			password: 'password',
-			profile: {
-				name: 'Test Dude 1'
-			}
+			name: 'Test Dude 1'
 		});
 
 		users[1] = new User({
 			email: 'nc38998@salisbury.edu',
 			password: 'password',
-			profile: {
-				name: 'Test Dude 2'
-			}
+			name: 'Test Dude 2'
 		});
 
 		async.each(users, function (user, done) {
@@ -50,8 +46,8 @@ describe('GET /api/users', function () {
 				.get('/api/users')
 				.end(function (err, res) {
 					if (err) return done(err);
-					res.body[0].profile.name.should.equal('Test Dude 1');
-					res.body[1].profile.name.should.equal('Test Dude 2');
+					res.body[0].name.should.equal('Test Dude 1');
+					res.body[1].name.should.equal('Test Dude 2');
 					return done();
 				});
 		});
@@ -79,18 +75,14 @@ describe('PUT /api/users', function () {
 			email: 'nick.chamberlain.jr@gmail.com',
 			password: 'password',
 			playing: false,
-			profile: {
-				name: 'Test Dude 1'
-			}
+			name: 'Test Dude 1'
 		});
 
 		users[1] = new User({
 			email: 'nc38998@salisbury.edu',
 			password: 'password',
 			playing: true,
-			profile: {
-				name: 'Test Dude 2'
-			}
+			name: 'Test Dude 2'
 		});
 
 		async.map(users, function (user, done) {
@@ -101,7 +93,7 @@ describe('PUT /api/users', function () {
 		}, function (err, results) {
 			// console.log(results);
 			request(app)
-				.put('/api/users/' + results[0]._id)
+				.put('/api/users/' + results[0].id)
 				.send({
 					playing: true
 				})
@@ -128,25 +120,20 @@ describe('PUT /api/users', function () {
 
 		it('POST creates new users', function (done) {
 
-
 			var users = [];
 
 			users[0] = new User({
 				email: 'nick.chamberlain.jr@gmail.com',
 				password: 'password',
 				playing: false,
-				profile: {
-					name: 'Test Dude 1'
-				}
+				name: 'Test Dude 1'
 			});
 
 			users[1] = new User({
 				email: 'nc38998@salisbury.edu',
 				password: 'password',
 				playing: true,
-				profile: {
-					name: 'Test Dude 2'
-				}
+				name: 'Test Dude 2'
 			});
 
 			async.each(users, function (user, done) {
@@ -155,7 +142,7 @@ describe('PUT /api/users', function () {
 					.send({
 						email: user.email,
 						playing: user.playing,
-						name: user.profile.name
+						name: user.name
 					})
 					.expect(200)
 					.end(function (err, res) {

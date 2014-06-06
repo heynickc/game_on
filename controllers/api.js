@@ -18,7 +18,7 @@ var json = function (res, data) {
  */
 
 exports.getUsers = function (req, res) {
-	User.find({}, 'email profile.name', function (err, users) {
+	User.find({}, 'email name', function (err, users) {
 		if (err)
 			res.send(err);
 		res.json(users);

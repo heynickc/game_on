@@ -78,7 +78,7 @@ describe('POST /signup', function () {
 				}, function (err, user) {
 					if (err) return done(err);
 					user.email.should.equal('nickc@nickc.com');
-					user.profile.name.should.equal('nick');
+					user.name.should.equal('nick');
 					return done();
 				});
 			});

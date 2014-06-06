@@ -8,20 +8,23 @@ var userSchema = new mongoose.Schema({
 		unique: true,
 		lowercase: true
 	},
-	password: String,
+
+	name: {
+		type: String,
+		default: ''
+	},
 
 	playing: {
 		type: Boolean,
 		default: false
 	},
 
+	password: String,
+
 	tokens: Array,
 
 	profile: {
-		name: {
-			type: String,
-			default: ''
-		},
+
 		gender: {
 			type: String,
 			default: ''

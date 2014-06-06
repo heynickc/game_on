@@ -68,7 +68,7 @@ if (process.env.NODE_ENV == 'development') {
 		'/login',
 		'/notify',
 		'/testNotify',
-		'/api/users/nick.chamberlain.jr@gmail.com'
+		'/api/users/'
 	];
 }
 
@@ -142,7 +142,8 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/api/users', apiController.getUsers);
-app.put('/api/users/:email', apiController.putUser);
+app.put('/api/users/:id', apiController.putUser);
+app.post('/api/users/', apiController.postUser);
 
 
 /**

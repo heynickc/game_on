@@ -93,14 +93,15 @@ describe('PUT /api/users', function () {
 			}
 		});
 
-		async.each(users, function (user, done) {
+		async.map(users, function (user, done) {
 			user.save(function (err, msg) {
 				if (err) return done(err);
-				return done();
+				return done(null, user);
 			});
-		}, function (err) {
+		}, function (err, results) {
+			// console.log(results);
 			request(app)
-				.put('/api/users/nick.chamberlain.jr@gmail.com')
+				.put('/api/users/' + results[0]._id)
 				.send({
 					playing: true
 				})
@@ -115,6 +116,62 @@ describe('PUT /api/users', function () {
 		afterEach(function (done) {
 			User.remove({}).exec();
 			return done();
+		});
+	});
+
+	describe('POST /api/user/:id', function () {
+
+		beforeEach(function (done) {
+			User.remove({}).exec();
+			return done();
+		});
+
+		it('POST creates new users', function (done) {
+
+
+			var users = [];
+
+			users[0] = new User({
+				email: 'nick.chamberlain.jr@gmail.com',
+				password: 'password',
+				playing: false,
+				profile: {
+					name: 'Test Dude 1'
+				}
+			});
+
+			users[1] = new User({
+				email: 'nc38998@salisbury.edu',
+				password: 'password',
+				playing: true,
+				profile: {
+					name: 'Test Dude 2'
+				}
+			});
+
+			async.each(users, function (user, done) {
+				request(app)
+					.post('/api/users/')
+					.send({
+						email: user.email,
+						playing: user.playing,
+						name: user.profile.name
+					})
+					.expect(200)
+					.end(function (err, res) {
+						if (err) return done(err);
+						// console.log(res);
+						return done();
+					});
+			}, function (err) {
+				if (err) return done(err);
+				return done();
+			});
+
+			afterEach(function (done) {
+				User.remove({}).exec();
+				return done();
+			});
 		});
 	});
 });

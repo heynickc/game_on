@@ -50,3 +50,20 @@ exports.putUser = function (req, res) {
 		});
 	});
 };
+
+exports.postUser = function (req, res) {
+
+	var user = new User();
+
+	user.email = req.body.email;
+	user.playing = req.body.playing;
+	user.profile.name = req.body.name;
+
+	// Save the player and check for errors
+	user.save(function (err) {
+		if (err)
+			res.send(err);
+
+		res.json(user);
+	});
+};

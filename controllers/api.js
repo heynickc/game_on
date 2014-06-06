@@ -3,7 +3,7 @@ var User = require('../models/User');
 //helper method for writing out json payloads
 //trying to comply with
 //https://github.com/interagent/http-api-design#return-appropriate-status-codes
-var json = function(res, data) {
+var json = function (res, data) {
 	res.writeHead(200, {
 		'Content-Type': 'application/json; charset=utf-8'
 	});
@@ -17,8 +17,8 @@ var json = function(res, data) {
  * Gets all users
  */
 
-exports.getUsers = function(req, res) {
-	User.find({}, 'email profile.name', function(err, users) {
+exports.getUsers = function (req, res) {
+	User.find({}, 'email profile.name', function (err, users) {
 		if (err)
 			res.send(err);
 		res.json(users);
@@ -34,7 +34,7 @@ exports.putUser = function (req, res) {
 	// Use the Beer model to find a specific beer
 	User.findOne({
 		email: req.params.email
-	}, function (err, user) {
+	}, 'email profile.name playing', function (err, user) {
 		if (err)
 			res.send(err);
 

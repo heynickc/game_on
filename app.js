@@ -67,7 +67,8 @@ if (process.env.NODE_ENV == 'development') {
 		'/signup',
 		'/login',
 		'/notify',
-		'/testNotify'
+		'/testNotify',
+		'/api/users/nick.chamberlain.jr@gmail.com'
 	];
 }
 
@@ -141,6 +142,8 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/api/users', apiController.getUsers);
+app.put('/api/users/:email', apiController.putUser);
+
 
 /**
  * 500 Error Handler.

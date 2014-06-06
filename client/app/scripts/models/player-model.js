@@ -2,23 +2,24 @@
 
 App.Models = App.Models || {};
 
-(function() {
+(function () {
 	'use strict';
 
 	App.Models.PlayerModel = Backbone.Model.extend({
 
 		url: '',
 
-		initialize: function() {},
+		initialize: function () {},
 
 		defaults: {
+			email: '',
 			name: '',
 			playing: false
 		},
 
-		validate: function(attrs, options) {},
+		validate: function (attrs, options) {},
 
-		parse: function(response, options) {
+		parse: function (response, options) {
 			return response;
 		}
 	});

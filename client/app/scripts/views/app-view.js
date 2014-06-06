@@ -2,14 +2,14 @@
 
 App.Views = App.Views || {};
 
-(function() {
+(function () {
 	'use strict';
 
 	App.Views.AppView = Backbone.View.extend({
 
 		el: '#app-view',
 
-		template: JST['app/scripts/templates/app-view.hbs'],
+		template: JST['app/scripts/templates/app-view.ejs'],
 
 		tagName: 'div',
 
@@ -19,11 +19,11 @@ App.Views = App.Views || {};
 
 		events: {},
 
-		initialize: function() {
+		initialize: function () {
 			this.showAllPlayers();
 		},
 
-		showPlayer: function(model) {
+		showPlayer: function (model) {
 			var view = new App.Views.PlayerView({
 				model: model
 			});
@@ -33,7 +33,7 @@ App.Views = App.Views || {};
 			}
 		},
 
-		showAllPlayers: function() {
+		showAllPlayers: function () {
 			App.collection.each(this.showPlayer, this);
 		}
 

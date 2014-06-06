@@ -7,7 +7,8 @@ describe('User Model', function () {
 		var user = new User({
 			email: 'test@gmail.com',
 			name: 'test',
-			password: 'password'
+			password: 'password',
+			playing: 'true'
 		});
 		user.save(function (err) {
 			if (err) return done(err);
@@ -19,7 +20,8 @@ describe('User Model', function () {
 		var user = new User({
 			email: 'test@gmail.com',
 			name: 'test',
-			password: 'password'
+			password: 'password',
+			playing: 'true'
 		});
 		user.save(function (err) {
 			if (err) err.code.should.equal(11000);

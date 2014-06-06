@@ -2,12 +2,12 @@
 
 App.Views = App.Views || {};
 
-(function() {
+(function () {
 	'use strict';
 
 	App.Views.PlayerView = Backbone.View.extend({
 
-		template: JST['app/scripts/templates/player-view.hbs'],
+		template: JST['app/scripts/templates/player-view.ejs'],
 
 		tagName: 'li',
 
@@ -17,11 +17,11 @@ App.Views = App.Views || {};
 
 		events: {},
 
-		initialize: function() {
+		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
 		},
 
-		render: function() {
+		render: function () {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		}

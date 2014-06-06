@@ -61,3 +61,16 @@ describe('GET /api/users', function () {
 		return done();
 	});
 });
+
+describe('GET /api/users', function () {
+
+	beforeEach(function (done) {
+		User.remove({}).exec();
+		return done();
+	});
+
+	afterEach(function (done) {
+		User.remove({}).exec();
+		return done();
+	});
+});

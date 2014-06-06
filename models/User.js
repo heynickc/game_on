@@ -10,6 +10,11 @@ var userSchema = new mongoose.Schema({
 	},
 	password: String,
 
+	playing: {
+		type: Boolean,
+		default: false
+	},
+
 	tokens: Array,
 
 	profile: {

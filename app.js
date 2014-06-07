@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var csrf = require('lusca').csrf();
+var cors = require('cors');
 var methodOverride = require('method-override');
 var MongoStore = require('connect-mongo')({
 	session: session
@@ -94,6 +95,7 @@ app.use(function (req, res, next) {
 	if (_.contains(csrfWhitelist, req.path) || (process.env.NODE_ENV == 'development')) return next();
 	csrf(req, res, next);
 });
+app.use(cors());
 app.use(function (req, res, next) {
 	res.locals.user = req.user;
 	next();
@@ -137,8 +139,7 @@ app.post('/account/delete', passportConf.isAuthenticated, userController.postDel
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/api/users', apiController.getUsers);
 app.put('/api/users/:id', apiController.putUser);
-app.post('/api/users/', apiController.postUser);
-
+app.post('/api/users', apiController.postUser);
 
 /**
  * 500 Error Handler.

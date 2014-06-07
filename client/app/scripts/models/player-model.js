@@ -7,7 +7,7 @@ App.Models = App.Models || {};
 
 	App.Models.PlayerModel = Backbone.Model.extend({
 
-		url: '',
+		// url: '',
 
 		initialize: function () {},
 

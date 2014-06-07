@@ -51,11 +51,13 @@ exports.putUser = function (req, res) {
 
 exports.postUser = function (req, res) {
 
+	console.log(req);
+
 	var user = new User();
 
 	user.email = req.body.email;
 	user.playing = req.body.playing;
-	user.profile.name = req.body.name;
+	user.name = req.body.name;
 
 	// Save the player and check for errors
 	user.save(function (err) {

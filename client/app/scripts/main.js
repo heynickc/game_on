@@ -12,7 +12,7 @@ window.App = {
 
 		this.collection = new this.Collections.PlayerCollection();
 
-		this.collection.localStorage._clear();
+		// this.collection.localStorage._clear();
 
 		this.collection.create({
 			email: 'nick.chamberlain.jr@gmail.com',

@@ -51,8 +51,6 @@ exports.putUser = function (req, res) {
 
 exports.postUser = function (req, res) {
 
-	console.log(req);
-
 	var user = new User();
 
 	user.email = req.body.email;

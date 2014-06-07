@@ -9,7 +9,7 @@ App.Views = App.Views || {};
 
 		template: JST['app/scripts/templates/player-view.ejs'],
 
-		tagName: 'li',
+		tagName: 'div',
 
 		id: '',
 

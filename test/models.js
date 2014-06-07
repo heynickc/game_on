@@ -37,12 +37,23 @@ describe('User Model', function () {
 	});
 
 	it('should find user by email', function (done) {
-		User.findOne({
-			email: 'test@gmail.com'
-		}, function (err, user) {
+		var user = new User({
+			email: 'test@gmail.com',
+			name: 'test',
+			password: 'password',
+			playing: true
+		});
+
+		user.save(function (err) {
 			if (err) return done(err);
-			// user.email.should.equal('test@gmail.com');
-			done();
+			User.findOne({
+				email: 'test@gmail.com'
+			}, function (err, user) {
+				if (err) return done(err);
+				// console.log(user);
+				user.email.should.equal('test@gmail.com');
+				done();
+			});
 		});
 	});
 

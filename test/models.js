@@ -50,7 +50,6 @@ describe('User Model', function () {
 				email: 'test@gmail.com'
 			}, function (err, user) {
 				if (err) return done(err);
-				// console.log(user);
 				user.email.should.equal('test@gmail.com');
 				done();
 			});

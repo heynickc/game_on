@@ -7,19 +7,8 @@ block content
     h2 Who's playing?
     br
     .row
-      .col-xs-12
-        ul.list-group
-          for user in profiles
-            .list-group-item
-                .col-xs-6
-                  h4.username= user.profile.name
-                .col-xs-6
-                  .pull-right
-                      button.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
-                        i.fa.fa-thumbs-o-up.fa-lg
-                      button.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
-                        i.fa.fa-thumbs-o-down.fa-lg
-                .clearfix
+      #app-view.col-xs-12
+          ul#player-list.list-group
    //form(method='POST' action='/notify')
       //.form-group
         //button.btn.btn-primary(type='submit')

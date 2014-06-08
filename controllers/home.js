@@ -6,10 +6,10 @@ var User = require('../models/User');
  */
 
 exports.index = function (req, res) {
-	User.find({}, 'profile.name', function (err, profiles) {
+	User.find({}, 'name', function (err, users) {
 		res.render('home', {
 			title: 'Home',
-			profiles: profiles
+			users: users
 		});
 	});
 };

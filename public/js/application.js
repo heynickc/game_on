@@ -9,6 +9,4 @@
  * at the bottom of the compiled file.
  */
 
-//= require yo/scripts/530e4606.vendor
-//= require yo/scripts/aaf74903.plugins
-//= require yo/scripts/bc1d2711.main
+//= require_tree yo/scripts

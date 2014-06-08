@@ -61,6 +61,7 @@ describe('Players Collection', function () {
 		});
 		var request = this.Players.toJSON();
 		console.log(JSON.stringify(request));
+		// [{"name":"Nick Chamberlain","email":"nick.chamberlain.jr@gmail.com","playing":true,"_id":"2c478fea-7a02-f0e2-15a6-81105d195975"},{"name":"Bob Sacamano","email":"nc38998@salisbury.edu","playing":false,"_id":"724aecfb-87f8-8f0b-6614-6176c42ca3d8"}]
 	});
 
 	afterEach(function () {

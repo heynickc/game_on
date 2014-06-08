@@ -27,14 +27,17 @@ describe('GET /api/users', function () {
 		users[0] = new User({
 			email: 'nick.chamberlain.jr@gmail.com',
 			password: 'password',
+			playing: false,
 			name: 'Test Dude 1'
 		});
 
 		users[1] = new User({
 			email: 'nc38998@salisbury.edu',
 			password: 'password',
+			playing: true,
 			name: 'Test Dude 2'
 		});
+
 
 		async.each(users, function (user, done) {
 			user.save(function (err, msg) {

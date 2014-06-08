@@ -21,7 +21,20 @@ exports.getUsers = function (req, res) {
 	User.find({}, 'email name', function (err, users) {
 		if (err)
 			res.send(err);
-		res.json(users);
+		json(res, users);
+	});
+};
+
+/**
+ * GET /api/users/:id
+ * Gets user by id
+ */
+
+exports.getUser = function (req, res) {
+	return User.findById(req.params._id, function (err, user) {
+		if (!err) {
+			return res.send(user);
+		}
 	});
 };
 
@@ -32,8 +45,10 @@ exports.getUsers = function (req, res) {
 
 exports.putUser = function (req, res) {
 
+	console.log(req.body);
+
 	User.findOne({
-		_id: req.params.id
+		_id: req.params._id
 	}, 'email profile.name playing', function (err, user) {
 		if (err)
 			res.send(err);
@@ -51,6 +66,8 @@ exports.putUser = function (req, res) {
 
 exports.postUser = function (req, res) {
 
+	console.log(req.body);
+
 	var user = new User();
 
 	user.email = req.body.email;
@@ -58,10 +75,25 @@ exports.postUser = function (req, res) {
 	user.name = req.body.name;
 
 	// Save the player and check for errors
-	user.save(function (err) {
+	user.save(function (err, msg) {
 		if (err)
 			res.send(err);
 
 		res.json(user);
+	});
+};
+
+// Create endpoint /api/user/:id for DELETE
+exports.deleteUser = function (req, res) {
+
+	console.log(req.body);
+
+	User.findByIdAndRemove(req.params._id, function (err) {
+		if (err)
+			res.send(err);
+
+		res.json({
+			message: 'User removed'
+		});
 	});
 };

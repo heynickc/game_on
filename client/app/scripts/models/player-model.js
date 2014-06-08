@@ -24,6 +24,7 @@ App.Models = App.Models || {};
 		},
 
 		toggle: function () {
+			console.log(this.isNew());
 			this.save({
 				playing: !this.get('playing')
 			});

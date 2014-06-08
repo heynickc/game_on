@@ -138,7 +138,8 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/api/users', apiController.getUsers);
-app.put('/api/users/:id', apiController.putUser);
+app.put('/api/users/:_id', apiController.putUser);
+app.delete('api/users/:_id', apiController.deleteUser);
 app.post('/api/users', apiController.postUser);
 
 /**

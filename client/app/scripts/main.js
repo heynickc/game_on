@@ -12,7 +12,7 @@ window.App = {
 
 		this.Players = new this.Collections.PlayerCollection();
 
-		this.Players.localStorage._clear();
+		// this.Players.localStorage._clear();
 
 		// this.Players.create({
 		// 	email: 'nick.chamberlain.jr@gmail.com',
@@ -25,6 +25,9 @@ window.App = {
 		// 	name: 'Bob Sacamano',
 		// 	playing: false
 		// });
+
+		this.Players.fetch();
+		console.log(this.Players);
 
 		new this.Views.AppView();
 	}

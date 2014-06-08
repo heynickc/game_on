@@ -7770,6 +7770,6 @@ body {
 }
 
 /* line 124, ../../app/styles/main.scss */
-.username {
+#username {
   line-height: 30px;
 }

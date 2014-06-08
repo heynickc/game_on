@@ -15,16 +15,28 @@ App.Views = App.Views || {};
 
 		className: 'list-group-item',
 
-		events: {},
+		events: {
+			'click #player-status button': 'togglePlaying',
+		},
 
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
+
+			//not sure I need this
+			this.$el.toggleClass('playing', this.model.get('playing'));
 		},
 
 		render: function () {
 			this.$el.html(this.template(this.model.toJSON()));
+
+			// if the player is playing, give it the playing class
+			this.$el.toggleClass('playing', this.model.get('playing'));
 			return this;
-		}
+		},
+
+		togglePlaying: function () {
+			this.model.toggle();
+		},
 
 	});
 

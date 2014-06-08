@@ -17,6 +17,8 @@
         var should = chai.should();
     </script>
 
+    <!-- Test Fixtures. -->
+     <div id="fixtures"style="display: none; visibility: hidden;"></div>
 
     <!-- build:js scripts/vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -50,13 +52,11 @@
     <!-- endbuild -->
     <!-- include source files here... -->
 
-    <script src="test/models/player-model.js"></script>
-    <script src="test/collections/player-collection.js"></script>
-    <script src="test/views/player-view.js"></script>
-    <script src="test/views/app-view.js"></script>
+    <script src="/models/player-model.spec.js"></script>
+    <script src="/collections/player-collection.spec.js"></script>
+    <script src="/views/player-view.spec.js"></script>
+    <script src="/views/app-view.spec.js"></script>
     <!-- include spec files here... -->
-    <script src="spec/test.js"></script>
-    <script src="collections/player-collection.spec.js"></script>
 
     <script>mocha.run()</script>
 </body>

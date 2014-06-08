@@ -7,7 +7,7 @@ App.Models = App.Models || {};
 
 	App.Models.PlayerModel = Backbone.Model.extend({
 
-		// url: '',
+		idAttribute: '_id',
 
 		initialize: function () {},
 
@@ -21,6 +21,12 @@ App.Models = App.Models || {};
 
 		parse: function (response, options) {
 			return response;
+		},
+
+		toggle: function () {
+			this.save({
+				playing: !this.get('playing')
+			});
 		}
 	});
 

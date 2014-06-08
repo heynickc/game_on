@@ -20,21 +20,23 @@ App.Views = App.Views || {};
 		events: {},
 
 		initialize: function () {
-			this.showAllPlayers();
+			this.addAllPlayers();
+
+			this.listenTo(App.Players, 'add', this.addOne);
+			this.listenTo(App.Players, 'reset', this.addAll);
 		},
 
-		showPlayer: function (model) {
+		addPlayer: function (model) {
 			var view = new App.Views.PlayerView({
 				model: model
 			});
 
-			if (model.get('playing')) {
-				$('#player-list').append(view.render().el);
-			}
+			$('#player-list').append(view.render().el);
 		},
 
-		showAllPlayers: function () {
-			App.collection.each(this.showPlayer, this);
+		addAllPlayers: function () {
+			$('#player-list').html('');
+			App.Players.each(this.addPlayer, this);
 		}
 
 	});

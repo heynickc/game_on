@@ -4,8 +4,8 @@
 describe('Players Collection', function () {
 
 	beforeEach(function () {
-		this.server = sinon.fakeServer.create();
-		this.server.autoRespond = true;
+		// this.server = sinon.fakeServer.create();
+		// this.server.autoRespond = true;
 		this.Players = new App.Collections.PlayerCollection();
 		this.Players.localStorage._clear();
 	});
@@ -20,7 +20,7 @@ describe('Players Collection', function () {
 		expect(this.Players.at(0).get('email')).to.equal('nick.chamberlain.jr@gmail.com');
 		expect(this.Players.at(0).get('name')).to.equal('Nick Chamberlain');
 		expect(this.Players.at(0).get('playing')).to.be.true;
-		console.log(this.Players.at(0).toJSON());
+		// console.log(this.Players.at(0).toJSON());
 	});
 
 	it('Updating a model PUTs change to server', function () {
@@ -59,8 +59,8 @@ describe('Players Collection', function () {
 			email: 'nc38998@salisbury.edu',
 			playing: false
 		});
-		var request = this.server.requests[0].requestBody;
-		console.log(request);
+		var request = this.Players.toJSON();
+		console.log(JSON.stringify(request));
 	});
 
 	afterEach(function () {

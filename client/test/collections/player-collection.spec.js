@@ -6,7 +6,7 @@ describe('Players Collection', function () {
 	beforeEach(function () {
 		// this.server = sinon.fakeServer.create();
 		// this.server.autoRespond = true;
-		this.Players = new App.Collections.PlayerCollection();
+		this.Players = new App.Collections.PlayerCollectionLocalStorage();
 		this.Players.localStorage._clear();
 	});
 

@@ -13,8 +13,6 @@ window.App = {
 		this.Players = new this.Collections.PlayerCollection();
 		this.Players.reset();
 
-		new this.Views.AppView();
-
 		this.Players.create({
 			email: 'nick.chamberlain.jr@gmail.com',
 			name: 'Nick Chamberlain',
@@ -26,6 +24,8 @@ window.App = {
 			name: 'Bob Sacamano',
 			playing: false
 		});
+
+		new this.Views.AppView();
 	}
 };
 

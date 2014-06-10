@@ -1,7 +1,7 @@
 /*global beforeEach, before, afterEach, after, describe, it, assert, expect  */
 'use strict';
 
-describe('PlayerView View', function () {
+describe('Player View', function () {
 
 	before(function () {
 		// Create test fixture.
@@ -29,15 +29,9 @@ describe('PlayerView View', function () {
 		this.view.render().el;
 	});
 
-	it('Should create a player view with model : .name', function () {
+	it('Should create a player view with model name', function () {
 		var $name = $('h4#username');
 		$name.text().should.equal('Nick Chamberlain');
-	});
-
-	it('Toggle player playing updates model attribute', function () {
-		this.view.model.get('playing').should.be.false;
-		this.view.togglePlaying();
-		this.view.model.get('playing').should.be.true;
 	});
 
 	it('Toggle player playing updates model attribute', function () {

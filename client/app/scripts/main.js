@@ -11,19 +11,18 @@ window.App = {
 		console.log('Hello from Backbone!');
 
 		this.Players = new this.Collections.PlayerCollection();
-		this.Players.reset();
 
-		this.Players.create({
-			email: 'nick.chamberlain.jr@gmail.com',
-			name: 'Nick Chamberlain',
-			playing: true
-		});
+		// this.Players.create({
+		// 	email: 'nick.chamberlain.jr@gmail.com',
+		// 	name: 'Nick Chamberlain',
+		// 	playing: true
+		// });
 
-		this.Players.create({
-			email: 'nc38998@salisbury.edu',
-			name: 'Bob Sacamano',
-			playing: false
-		});
+		// this.Players.create({
+		// 	email: 'nc38998@salisbury.edu',
+		// 	name: 'Bob Sacamano',
+		// 	playing: false
+		// });
 
 		new this.Views.AppView();
 	}

@@ -558,7 +558,7 @@ cite {
 }
 
 /* line 79, ../../app/bower_components/sass-bootstrap/lib/_type.scss */
-h1, h2, h3, h4, h5, h6,
+h1, h2, h3, h4, #new-player, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
@@ -569,8 +569,9 @@ h1, h2, h3, h4, h5, h6,
 h1 small,
 h1 .small, h2 small,
 h2 .small, h3 small,
-h3 .small, h4 small,
-h4 .small, h5 small,
+h3 .small, h4 small, #new-player small,
+h4 .small,
+#new-player .small, h5 small,
 h5 .small, h6 small,
 h6 .small,
 .h1 small,
@@ -603,15 +604,16 @@ h3 .small {
 }
 
 /* line 106, ../../app/bower_components/sass-bootstrap/lib/_type.scss */
-h4,
+h4, #new-player,
 h5,
 h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 /* line 111, ../../app/bower_components/sass-bootstrap/lib/_type.scss */
-h4 small,
+h4 small, #new-player small,
 h4 .small,
+#new-player .small,
 h5 small,
 h5 .small,
 h6 small,
@@ -635,7 +637,7 @@ h3, .h3 {
 }
 
 /* line 119, ../../app/bower_components/sass-bootstrap/lib/_type.scss */
-h4, .h4 {
+h4, #new-player, .h4 {
   font-size: 18px;
 }
 
@@ -5675,7 +5677,7 @@ a.thumbnail.active {
   border-radius: 4px;
 }
 /* line 16, ../../app/bower_components/sass-bootstrap/lib/_alerts.scss */
-.alert h4 {
+.alert h4, .alert #new-player {
   margin-top: 0;
   color: inherit;
 }
@@ -10211,7 +10213,7 @@ body {
 }
 
 /* line 68, ../../app/styles/main.scss */
-.marketing p + h4 {
+.marketing p + h4, .marketing p + #new-player {
   margin-top: 28px;
 }
 
@@ -10244,11 +10246,6 @@ body {
   }
 }
 /* line 95, ../../app/styles/main.scss */
-#status {
-  margin: 3px 0 0 0;
-}
-
-/* line 99, ../../app/styles/main.scss */
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -10259,7 +10256,7 @@ body {
   border-radius: 15px;
 }
 
-/* line 108, ../../app/styles/main.scss */
+/* line 104, ../../app/styles/main.scss */
 .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
   width: 50px;
   height: 50px;
@@ -10270,7 +10267,7 @@ body {
   margin: 0 10px 0 0;
 }
 
-/* line 117, ../../app/styles/main.scss */
+/* line 113, ../../app/styles/main.scss */
 .btn-circle.btn-xl {
   width: 70px;
   height: 70px;
@@ -10280,7 +10277,20 @@ body {
   border-radius: 35px;
 }
 
+/* line 122, ../../app/styles/main.scss */
+#status {
+  margin: 3px 0 0 0;
+}
+
 /* line 126, ../../app/styles/main.scss */
 #username {
   line-height: 30px;
+}
+
+/* line 130, ../../app/styles/main.scss */
+#new-player {
+  outline: none;
+  border: none;
+  line-height: 30px;
+  padding: 0px 15px 0px 15px;
 }

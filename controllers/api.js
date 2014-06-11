@@ -3,7 +3,7 @@ var User = require('../models/User');
 //helper method for writing out json payloads
 //trying to comply with
 //https://github.com/interagent/http-api-design#return-appropriate-status-codes
-var json = function (res, data) {
+var json = function(res, data) {
 	res.writeHead(200, {
 		'Content-Type': 'application/json; charset=utf-8'
 	});
@@ -17,11 +17,10 @@ var json = function (res, data) {
  * Gets all users
  */
 
-exports.getUsers = function (req, res) {
-	User.find({}, 'email name playing', function (err, users) {
+exports.getUsers = function(req, res, next) {
+	User.find({}, 'email name playing', function(err, users) {
 		if (err)
-			res.send(err);
-
+			return next(err);
 		json(res, users);
 	});
 };
@@ -31,11 +30,10 @@ exports.getUsers = function (req, res) {
  * Gets user by id
  */
 
-exports.getUser = function (req, res) {
-	return User.findById(req.params._id, function (err, user) {
-		if (err) {
-			return json(res, err);
-		}
+exports.getUser = function(req, res, next) {
+	return User.findById(req.params._id, function(err, user) {
+		if (err)
+			return next(err);
 		json(res, user);
 	});
 };
@@ -45,30 +43,27 @@ exports.getUser = function (req, res) {
  * Puts update to user
  */
 
-exports.putUser = function (req, res) {
+exports.putUser = function(req, res, next) {
 
 	console.log(req.body);
 
 	User.findOne({
 		_id: req.params._id
-	}, 'email profile.name playing', function (err, user) {
+	}, 'email profile.name playing', function(err, user) {
 		if (err)
 			res.send(err);
 
 		user.playing = req.body.playing;
 
-		user.save(function (err) {
+		user.save(function(err) {
 			if (err)
-				res.send(500, {
-					error: err
-				});
-
+				return next(err);
 			json(res, user);
 		});
 	});
 };
 
-exports.postUser = function (req, res) {
+exports.postUser = function(req, res, next) {
 
 	console.log(req.body);
 
@@ -79,25 +74,21 @@ exports.postUser = function (req, res) {
 	user.name = req.body.name;
 
 	// Save the player and check for errors
-	user.save(function (err, msg) {
+	user.save(function(err, msg) {
 		if (err)
-			res.send(500, {
-				error: err
-			});
-
+			return next(err);
 		json(res, user);
 	});
 };
 
 // Create endpoint /api/user/:id for DELETE
-exports.deleteUser = function (req, res) {
+exports.deleteUser = function(req, res, next) {
 
 	console.log(req.body);
 
-	User.findByIdAndRemove(req.params._id, function (err) {
+	User.findByIdAndRemove(req.params._id, function(err) {
 		if (err)
-			res.send(err);
-
+			return next(err);
 		json(res, {
 			message: 'User removed'
 		});

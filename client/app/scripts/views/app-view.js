@@ -2,7 +2,7 @@
 
 App.Views = App.Views || {};
 
-(function() {
+(function () {
 	'use strict';
 
 	App.Views.AppView = Backbone.View.extend({
@@ -19,14 +19,14 @@ App.Views = App.Views || {};
 
 		events: {},
 
-		initialize: function() {
+		initialize: function () {
 			this.addAllPlayers();
 
 			this.listenTo(App.Players, 'add', this.addPlayer);
 			this.listenTo(App.Players, 'reset', this.addAllPlayers);
 		},
 
-		addPlayer: function(model) {
+		addPlayer: function (model) {
 			var view = new App.Views.PlayerView({
 				model: model
 			});
@@ -34,10 +34,13 @@ App.Views = App.Views || {};
 			$('#player-list').append(view.render().el);
 		},
 
-		addAllPlayers: function() {
+		addAllPlayers: function () {
 			$('#player-list').html('');
-			App.Players.each(this.addPlayer, this);
+			App.Players.fetch({
+				success: function () {
+					App.Players.each(this.addPlayer, this);
+				}
+			});
 		}
-
 	});
 })();

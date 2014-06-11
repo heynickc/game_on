@@ -18,9 +18,10 @@ var json = function (res, data) {
  */
 
 exports.getUsers = function (req, res) {
-	User.find({}, 'email name', function (err, users) {
+	User.find({}, 'email name playing', function (err, users) {
 		if (err)
 			res.send(err);
+
 		json(res, users);
 	});
 };
@@ -32,9 +33,10 @@ exports.getUsers = function (req, res) {
 
 exports.getUser = function (req, res) {
 	return User.findById(req.params._id, function (err, user) {
-		if (!err) {
-			return res.send(user);
+		if (err) {
+			return json(res, err);
 		}
+		json(res, user);
 	});
 };
 
@@ -57,9 +59,11 @@ exports.putUser = function (req, res) {
 
 		user.save(function (err) {
 			if (err)
-				res.send(err);
+				res.send(500, {
+					error: err
+				});
 
-			res.json(user);
+			json(res, user);
 		});
 	});
 };
@@ -77,9 +81,11 @@ exports.postUser = function (req, res) {
 	// Save the player and check for errors
 	user.save(function (err, msg) {
 		if (err)
-			res.send(err);
+			res.send(500, {
+				error: err
+			});
 
-		res.json(user);
+		json(res, user);
 	});
 };
 
@@ -92,7 +98,7 @@ exports.deleteUser = function (req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({
+		json(res, {
 			message: 'User removed'
 		});
 	});

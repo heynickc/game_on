@@ -2,7 +2,7 @@
 
 App.Views = App.Views || {};
 
-(function() {
+(function () {
 	'use strict';
 
 	App.Views.AppView = Backbone.View.extend({
@@ -17,16 +17,18 @@ App.Views = App.Views || {};
 
 		className: '',
 
-		events: {},
+		events: {
+			'keypress #new-player': 'createOnEnter',
+		},
 
-		initialize: function() {
+		initialize: function () {
 			this.addAllPlayers();
-
+			this.input = this.$('#new-player');
 			this.listenTo(App.Players, 'add', this.addPlayer);
 			this.listenTo(App.Players, 'reset', this.addAllPlayers);
 		},
 
-		addPlayer: function(model) {
+		addPlayer: function (model) {
 			var view = new App.Views.PlayerView({
 				model: model
 			});
@@ -34,10 +36,15 @@ App.Views = App.Views || {};
 			$('#player-list').append(view.render().el);
 		},
 
-		addAllPlayers: function() {
+		addAllPlayers: function () {
 			$('#player-list').html('');
 			App.Players.fetch();
 			App.Players.each(this.addPlayer, this);
+		},
+
+		createOnEnter: function () {
+			var playerName = this.input.val();
+			console.log(playerName);
 		}
 	});
 })();

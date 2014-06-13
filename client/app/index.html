@@ -21,20 +21,20 @@
 
         <div class="row">
           <div class="col-xs-12" id="app-view">
-            <li class="list-group-item">
+            <ul class="list-group" id="player-list">
+            </ul>
+            <li class="list-group-item" id="new-player-input">
                 <input class="col-xs-6" id="new-player" placeholder="Enter New Player Name">
                 </input>
                 <div class="col-xs-6" id="player-status">
                   <div class="pull-right">
-                    <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg">
+                    <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg" id="new-player-playing">
                       <i class="fa fa-thumbs-o-up fa-lg"></i>
                     </button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
             </li>
-            <ul class="list-group" id="player-list">
-            </ul>
           </div>
         </div>
 

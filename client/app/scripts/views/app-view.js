@@ -24,6 +24,7 @@ App.Views = App.Views || {};
 		initialize: function () {
 			this.addAllPlayers();
 			this.input = this.$('#new-player');
+			this.button = this.$('#new-player-playing')
 			this.listenTo(App.Players, 'add', this.addPlayer);
 			this.listenTo(App.Players, 'reset', this.addAllPlayers);
 		},
@@ -42,9 +43,15 @@ App.Views = App.Views || {};
 			App.Players.each(this.addPlayer, this);
 		},
 
-		createOnEnter: function () {
+		createOnEnter: function (e) {
 			var playerName = this.input.val();
-			console.log(playerName);
+			if (!playerName || e.keyCode !== 13) return;
+			App.Players.create({
+				email: '',
+				name: playerName,
+				playing: this.button.hasClass('active')
+			});
+			this.input.val('');
 		}
 	});
 })();

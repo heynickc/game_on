@@ -6,12 +6,12 @@ window.App = {
 	Collections: {},
 	Views: {},
 	Routers: {},
-	init: function() {
+	init: function () {
 		'use strict';
 		console.log('Hello from Backbone!');
 
 		this.Players = new this.Collections.PlayerCollectionLocalStorage();
-
+		this.Players.localStorage._clear();
 		// this.Players.create({
 		// 	email: 'nick.chamberlain.jr@gmail.com',
 		// 	name: 'Nick Chamberlain',
@@ -28,7 +28,7 @@ window.App = {
 	}
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
 	'use strict';
 	App.init();
 });

@@ -25,8 +25,8 @@ App.Views = App.Views || {};
 			this.addAllPlayers();
 			this.input = this.$('#new-player');
 			this.button = this.$('#new-player-playing')
-			this.listenTo(App.Players, 'add', this.addPlayer);
-			this.listenTo(App.Players, 'reset', this.addAllPlayers);
+			this.listenTo(this.collection, 'add', this.addPlayer);
+			this.listenTo(this.collection, 'reset', this.addAllPlayers);
 		},
 
 		addPlayer: function (model) {
@@ -39,14 +39,14 @@ App.Views = App.Views || {};
 
 		addAllPlayers: function () {
 			$('#player-list').html('');
-			App.Players.fetch();
-			App.Players.each(this.addPlayer, this);
+			this.collection.fetch();
+			this.collection.each(this.addPlayer, this);
 		},
 
 		createOnEnter: function (e) {
 			var playerName = this.input.val();
 			if (!playerName || e.keyCode !== 13) return;
-			App.Players.create({
+			this.collection.create({
 				email: '',
 				name: playerName,
 				playing: this.button.hasClass('active')

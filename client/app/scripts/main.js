@@ -10,8 +10,9 @@ window.App = {
 		'use strict';
 		console.log('Hello from Backbone!');
 
-		this.Players = new this.Collections.PlayerCollectionLocalStorage();
-		this.Players.localStorage._clear();
+		this.collection = new this.Collections.PlayerCollectionLocalStorage();
+
+		// this.Players.localStorage._clear();
 		// this.Players.create({
 		// 	email: 'nick.chamberlain.jr@gmail.com',
 		// 	name: 'Nick Chamberlain',
@@ -24,11 +25,13 @@ window.App = {
 		// 	playing: false
 		// });
 
-		new this.Views.AppView();
+		new this.Views.AppView({
+			collection: this.collection
+		});
 	}
 };
 
 $(document).ready(function () {
 	'use strict';
-	App.init();
+	// App.init();
 });

@@ -7,7 +7,7 @@
 	},
 	"scripts": {
 		"start": "node app.js",
-		"test": "mocha ./test/ && grunt test --gruntfile ./client/Gruntfile.js"
+		"test": "mocha ./test/"
 	},
 	"dependencies": {
 		"async": "^0.8.0",

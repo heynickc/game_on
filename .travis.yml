@@ -1,10 +1,4 @@
 language: node_js
-before_install:
-- npm install -g grunt-cli
-- npm install -g bower
-- gem install compass
-install:
-- "npm install && cd ./client && npm install && bower install && cd ./test && bower install && cd ../../"
 services:
 - mongodb
 node_js:

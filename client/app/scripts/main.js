@@ -10,7 +10,7 @@ window.App = {
 		'use strict';
 		console.log('Hello from Backbone!');
 
-		this.collection = new this.Collections.PlayerCollectionLocalStorage();
+		this.collection = new this.Collections.PlayerCollection();
 
 		// this.Players.localStorage._clear();
 		// this.Players.create({
@@ -33,5 +33,5 @@ window.App = {
 
 $(document).ready(function () {
 	'use strict';
-	// App.init();
+	App.init();
 });

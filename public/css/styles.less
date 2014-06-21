@@ -101,10 +101,6 @@ body {
   }
 }
 
-#status {
-  margin: 3px 0 0 0;
-}
-
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -121,7 +117,7 @@ body {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -132,10 +128,26 @@ body {
   border-radius: 35px;
 }
 
+#status {
+  margin: 3px 0 0 0;
+}
+
 #username {
   line-height: 30px;
 }
 
+#new-player {
+  &:extend(h4);
+  outline: none;
+  border: none;
+  line-height: 30px;
+  padding: 0px 15px 0px 15px;
+}
+
+div.pull-right {
+  margin-left: 20px;
+  border-right: 1px solid #ddd;
+}
 // * { background-color: rgba(255,0,0,.2); }
 // * * { background-color: rgba(0,255,0,.2); }
 // * * * { background-color: rgba(0,0,255,.2); }

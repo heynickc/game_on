@@ -7,8 +7,28 @@ block content
     //h2 Who's playing?
     br
     .row
-      #app-view.col-xs-12
+        #app-view.col-xs-12
           ul#player-list.list-group
+          li#new-player-input.list-group-item
+            input#new-player.col-xs-4(placeholder='Enter New Player Name')
+            #player-status.col-xs-8
+              .pull-right
+                button#new-player-playing.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
+                  i.fa.fa-thumbs-o-up.fa-lg
+              .pull-right
+                button#new-player-playing.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
+                  i.fa.fa-thumbs-o-up.fa-lg
+              .pull-right
+                button#new-player-playing.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
+                  i.fa.fa-thumbs-o-up.fa-lg
+              .pull-right
+                button#new-player-playing.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
+                  i.fa.fa-thumbs-o-up.fa-lg
+              .pull-right
+                button#new-player-playing.btn.btn-default.btn-circle.btn-lg(type='button', data-toggle='button')
+                  i.fa.fa-thumbs-o-up.fa-lg
+            .clearfix
+
    //form(method='POST' action='/notify')
       //.form-group
         //button.btn.btn-primary(type='submit')

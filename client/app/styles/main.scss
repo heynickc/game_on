@@ -108,7 +108,7 @@ body {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -133,4 +133,9 @@ body {
   border: none;
   line-height: 30px;
   padding: 0px 15px 0px 15px;
+}
+
+div.pull-right {
+  margin-left: 20px;
+  border-right: 1px solid #ddd;
 }

@@ -1,7 +1,22 @@
-<div class="col-xs-6" id="player">
+<div class="col-xs-4" id="player">
   <h4 id="username"><%= name %></h4>
 </div>
-<div class="col-xs-6" id="player-status">
+<div class="col-xs-8" id="player-status">
+  <div class="pull-right">
+    <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg <%= playing ? 'active' : '' %>">
+      <i class="fa fa-thumbs-o-up fa-lg"></i>
+    </button>
+  </div>
+  <div class="pull-right">
+    <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg <%= playing ? 'active' : '' %>">
+      <i class="fa fa-thumbs-o-up fa-lg"></i>
+    </button>
+  </div>
+  <div class="pull-right">
+    <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg <%= playing ? 'active' : '' %>">
+      <i class="fa fa-thumbs-o-up fa-lg"></i>
+    </button>
+  </div>
   <div class="pull-right">
     <button type="button" data-toggle="button" class="btn btn-default btn-circle btn-lg <%= playing ? 'active' : '' %>">
       <i class="fa fa-thumbs-o-up fa-lg"></i>
